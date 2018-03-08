@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> GitHub Profile Finder </title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<style>
+img{width:100%;}
+    .form-group{font-size: 30px;
+    color: azure;}
+    .panel-heading{color:white;}
+    #abc{color: white;
+    font-size: 20px;}
+    #def{color: white;
+    font-size: 20px;}
+    .footer {
+    position: fixed;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color:darkgray;
+        text-align: center;
+    }
+
+    
+</style>
+</head>
+<body background=http://traverslasik.com/wp-content/uploads/2015/06/texture-blue-fonchik-simple-dark-colors-glow-background.jpg>
+   <div class="container">
+   <form id="userForm">
+   <div class="form-group">
+   <label> GitHub Username</label>
+<a class ="btn btn-success" href ="vineet"> Visit Developer </a>
+   <input type="text" id="username" class="form-control">
+       </div>
+       </form>
+   <div id="profile"></div>
+   </div>
+   <script>
+      function getProfile(e){
+      e.preventDefault();
+      console.log('Fetching...');
+      var username = document.getElementById('username').value;
+      if(!username || username== ''){
+       username = 'vineetchaudhary';
+      }
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function(){
+      if(xhttp.readyState == 4 && xhttp.status ==200){
+      var user = JSON.parse(xhttp.responseText);
+      document.getElementById('profile').innerHTML =`<div class = "panel  panel-default">
+      <div class = "panel-heading">
+      <h3  class = "panel-title">${user.name}</h3>
+      </div>
+<br>
+      <div class ="panel-body">
+      <div class ="row">
+      <div class ="col-md-3">
+      <img src = "${user.avatar_url}">
+      </div>
+      <div class = "col-md-9">
+       <div id="abc">
+      <span class = "label label-success">Public Repos :  ${user.public_repos}</span>
+      <span class = "label label-success">    ||       </span>
+      <span class = "label label-sucess">Public Gists :  ${user.public_gists}</span>
+    </div><br>
+      <ul class = "list-group">
+      <li class = "list-group-item">Email     :  ${user.email}</li>      
+      <li class = "list-group-item">Location  :  ${user.location}</li>
+      <li class = "list-group-item">Followers :  ${user.followers}</li>
+      <li class = "list-group-item">Profile Created_At   :  ${user.created_at}</li>
+      <li class = "list-group-item">Profile Last_Updated :  ${user.updated_at}</li>
+      </ul>
+<br>
+      <a class ="btn btn-success" target="_blank" href ="${user.html_url}"> Visit GitHub </a>
+    </div>
+    </div>  
+    </div>
+    </div>`;
+      }
+      }
+      xhttp.open('GET' , 'https://api.github.com/users/'+username, true);
+      xhttp.send();
+      }
+      document.getElementById('userForm').addEventListener('submit', getProfile, false);
+     
+     
+     </script>
+     <div class="footer">
+        <h5> Copyright &copy; vChaudhary 2018</h5>           
+ </div>
+       
+  
+      </body>
+      </html>
+      
+      
