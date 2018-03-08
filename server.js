@@ -18,6 +18,6 @@ res.render('vineet.hbs');
 //res.render('vineet.hbs');
 //});
 
-app.listen.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 5000, () => {
 console.log('server is up on port 3000');
 });
